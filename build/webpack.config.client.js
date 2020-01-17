@@ -54,16 +54,16 @@ if (isDev) {
       ]
     },
     plugins: defaultPlugins.concat([
-      new webpack.HotModuleReplacementPlugin(),
-      new webpack.NoEmitOnErrorsPlugin()
+      new webpack.HotModuleReplacementPlugin()
+      // new webpack.NoEmitOnErrorsPlugin()
     ])
   })
 } else {
   config = merge(baseConfig, {
-    // entry: {
-    //   app: path.join(__dirname, '../client/index.js'),
-    //   vendor: ['vue']
-    // },
+    entry: {
+      app: path.join(__dirname, '../client/index.js')
+      // vendor: ['vue']
+    },
     output: {
       /*
         chunkhash与hash的区别：
@@ -100,14 +100,24 @@ if (isDev) {
         }
       ]
     },
+    // 代替webpack3.x的webpack.optimize.CommonsChunkPlugin配置
+    optimization: {
+      // 默认将node_modules中代码打包到vendor
+      splitChunks: {
+        chunks: 'all'
+      },
+      // 实现浏览器持久化缓存
+      runtimeChunk: true
+    },
     plugins: defaultPlugins.concat([
       new MiniCssExtractPlugin('styles.[contentHash:8].css')
+       // webpack4已将以下配置废弃
       // // 将类库代码与业务代码分开打开，使类库代码可以被浏览器缓存
-      // new webpack.optimization.splitChunks({
+      // new webpack.optimize.CommonsChunkPlugin({
       //   name: 'vendor'
       // }),
       // // 把webpack生成在app.js中相关代码打包在另一个文件
-      // new webpack.optimization.splitChunks({
+      // new webpack.optimize.CommonsChunkPlugin({
       //   name: 'runtime'
       // })
     ])
