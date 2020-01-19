@@ -1,6 +1,10 @@
 const path = require('path')
+// 新版webpack的vue-loader已经帮我们做了createVueLoaderOptions的事情
 const VueLoader = require('vue-loader')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+// const createVueLoaderOptions = require('./vue-loader.config.js')
+
+// const isDev = process.env.NODE_ENV === 'development'
 
 const config = {
   target: "web",
@@ -12,9 +16,17 @@ const config = {
   },
   module: {
     rules: [
+      // {
+      //   test: /\.(vue|js|jsx)$/,
+      //   loader: 'eslint-loader',
+      //   exclude: /node_modules/,
+      //   // 预处理pre或者后处理post
+      //   enforce: 'pre'
+      // },
       {
         test: /.vue$/,
         loader: 'vue-loader'
+        // options: createVueLoaderOptions(isDev)
       },
       {
         test: /\.(gif|jpg|jpeg|png|svg)$/,

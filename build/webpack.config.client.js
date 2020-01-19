@@ -8,7 +8,7 @@ const baseConfig = require('./webpack.config.base')
 let config
 
 const devServer = {
-  port: '8080',
+  port: '8000',
   host: '0.0.0.0',
   overlay: {
     // webpack编译出现错误时显示到网页上
@@ -40,8 +40,16 @@ if (isDev) {
         {
           test: /\.styl/,
           use: [
-            'style-loader',
-            'css-loader',
+            'vue-style-loader',
+             'css-loader',
+            // {
+            //   loader: 'css-loader',
+            //   options: {
+            //     modules: {
+            //       localIdentName: isDev ? '[path]-[name]-[hash:base64:5]' : '[hash:base64:5]'
+            //     }
+            //   }
+            // },
             {
               loader: 'postcss-loader',
               options: {
@@ -110,7 +118,8 @@ if (isDev) {
       runtimeChunk: true
     },
     plugins: defaultPlugins.concat([
-      new MiniCssExtractPlugin('styles.[contentHash:8].css')
+       // 将css代码分开打包
+      new MiniCssExtractPlugin('styles.[chunkhash:8].css')
        // webpack4已将以下配置废弃
       // // 将类库代码与业务代码分开打开，使类库代码可以被浏览器缓存
       // new webpack.optimize.CommonsChunkPlugin({
