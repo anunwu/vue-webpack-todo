@@ -8,7 +8,18 @@ export default [
   },
   {
     path: '/app',
-    component: Todo
+    component: Todo,
+    name: 'app',
+    meta: {
+      title: 'this is app',
+      description: 'app'
+    }
+    // children: [
+    //   {
+    //     path: 'test',
+    //     component: Login
+    //   }
+    // ]
   },
   {
     path: '/login',
