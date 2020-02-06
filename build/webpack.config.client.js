@@ -14,6 +14,13 @@ const devServer = {
     // webpack编译出现错误时显示到网页上
     errors: true
   },
+  // 当vue-router采用history模式时，必须有后端进行配置，否则当页面刷新时会出现404，
+  // 这是因为后端不认识当前刷新的路由，找不到对应的路径，所以会返回404，
+  // 在开发环境下为了解决这个问题可以进行historyApiFallback配置使得任意的 404 响应都可能需要被替代为 index.html。
+  // 若在webpack的output配置中有配置到publicPath: '/public/'，则这里应该对应配置成index: '/public/index.html'
+  historyApiFallback: {
+    index: '/index.html'
+  },
   // open: true,
   hot: true
 }
@@ -28,7 +35,9 @@ const defaultPlugins = [
        NODE_ENV: isDev ? "'development'" : "'production'"
      }
    }),
-   new HtmlWebpackPlugin()
+   new HtmlWebpackPlugin({
+     template: path.join(__dirname, 'template.html')
+   })
 ]
 
 if (isDev) {
