@@ -1,4 +1,6 @@
 // import './01.instance'
 // import './02.liftcycle'
 // import './03.data-binding'
-import './04.computed-watch'
+// import './04.computed-watch'
+// import './05.directive'
+import './06.defineComponent'
