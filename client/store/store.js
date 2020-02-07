@@ -15,6 +15,12 @@ export default () => {
     mutations,
     getters,
     actions,
+    plugins: [
+      (store) => {
+        console.log('my plugins invoked')
+        // store.subscribe/subscribeAction/watch....
+      }
+    ]
     // 模块化
     // modules: {
     //   a: {

@@ -58,15 +58,18 @@ export default {
   },
   mounted() {
     // console.log(this.$route)
-    console.log(this.$store)
-    // let i = 1
+    // console.log(this.$store)
+    let i = 1
 
     // setInterval(() => {
     //   this.$store.commit('updateCount', i++)
     // }, 1000)
 
     // setInterval(() => {
-    //   this.updateCount(i++)
+    //   this.updateCount({
+    //     num: i++,
+    //     num2: 1
+    //   })
     // }, 1000)
 
     // this.$store.dispatch('updateCountAsync', {
@@ -74,10 +77,10 @@ export default {
     //   time: 1000
     // })
 
-    // this.updateCountAsync({
-    //   num: 2,
-    //   time: 1000
-    // })
+    this.updateCountAsync({
+      num: 2,
+      time: 1000
+    })
 
     // this.updateText(666)
     // this['a/updateText'](666)
