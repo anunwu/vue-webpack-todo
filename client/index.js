@@ -13,6 +13,13 @@ Vue.use(Vuex)
 const router = createRouter()
 const store = createStore()
 
+// 动态注册模块
+store.registerModule('c', {
+  state: {
+    text: 2
+  }
+})
+
 // 全局导航守卫
 router.beforeEach((to, from, next) => {
   console.log('before each invoked')

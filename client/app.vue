@@ -3,6 +3,7 @@
     <div id="cover"></div>
     <Header />
     <p>{{ fullName }} {{ count }} </p>
+<!--    <p>textA:{{ textA }} 、 textB:{{ textB }}、textC:{{ textC }} 、textPlus:{{ textPlus }}</p>-->
 <!--    <Todo></Todo>-->
     <router-link to="/app/123">app123</router-link>
     <router-link to="/app/456">app456</router-link>
@@ -35,30 +36,66 @@ export default {
     // fullName() {
     //   return this.$store.getters.fullName
     // }
-    ...mapState(['count']),
-    ...mapGetters(['fullName'])
+    // textA () {
+    //   // 调用a模块中的state
+    //   return this.$store.state.a.text
+    // },
+    // textB () {
+    //   return this.$store.state.b.text
+    // }
+    ...mapState({
+      count: 'count',
+      // 模块化的state必须用函数获取
+      // textA: (state) => state.a.text,
+      // textB: (state) => state.b.text,
+      // textC: (state) => state.c.text
+    }),
+    // ...mapGetters(['fullName', 'a/textPlus']),
+    ...mapGetters({
+      fullName: 'fullName',
+      // textPlus: 'a/textPlus'
+    })
   },
   mounted() {
     // console.log(this.$route)
     console.log(this.$store)
-    let i = 1
+    // let i = 1
+
     // setInterval(() => {
     //   this.$store.commit('updateCount', i++)
     // }, 1000)
+
     // setInterval(() => {
     //   this.updateCount(i++)
     // }, 1000)
+
     // this.$store.dispatch('updateCountAsync', {
     //   num: 2,
     //   time: 1000
     // })
-    this.updateCountAsync({
-      num: 2,
-      time: 1000
-    })
+
+    // this.updateCountAsync({
+    //   num: 2,
+    //   time: 1000
+    // })
+
+    // this.updateText(666)
+    // this['a/updateText'](666)
+
+    // console.log('a/textPlus:', this['a/textPlus'])
+
+    // this['a/add']()
+
+    // this['b/testActions']()
   },
   methods: {
+    // updateText是a模块中的mutations，为什么不需要跟state一样函数式调用返回a模块的mutations？
+    // 原因是vuex默认所有模块的mutations命名不能冲突,但当给模块设置了namespaced: true时，这样下面的引用方式会报错
+    // ...mapMutations(['updateCount', 'updateText']),
+    // 当给模块设置了namespaced: true时，必须模块化a/updateText，当调用时this['a/updateText']
+    // ...mapMutations(['updateCount', 'a/updateText']),
     ...mapMutations(['updateCount']),
+    // ...mapActions(['updateCountAsync', 'a/add', 'b/testActions'])
     ...mapActions(['updateCountAsync'])
   }
 }
