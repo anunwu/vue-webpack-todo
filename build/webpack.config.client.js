@@ -90,7 +90,7 @@ if (isDev) {
         否则，每次更改业务代码后重新打包，类库文件的hash也跟着改变
         这样的话讲业务代码和类库代码分开打包就没有意义了，因为每次重新打包都改变了所有文件的hash
      */
-      filename: '[name].[chunkhash:8].js'
+      filename: '[name]_[chunkhash:8].js'
     },
     module: {
       rules: [
@@ -128,7 +128,7 @@ if (isDev) {
     },
     plugins: defaultPlugins.concat([
        // 将css代码分开打包
-      new MiniCssExtractPlugin('styles.[chunkhash:8].css')
+      new MiniCssExtractPlugin('styles_[chunkhash:8].css')
        // webpack4已将以下配置废弃
       // // 将类库代码与业务代码分开打开，使类库代码可以被浏览器缓存
       // new webpack.optimize.CommonsChunkPlugin({

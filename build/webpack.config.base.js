@@ -11,7 +11,7 @@ const config = {
   mode:  process.env.NODE_ENV || 'production',
   entry: path.join(__dirname, '../client/index.js'),
   output: {
-    filename: 'bundle.js',
+    filename: 'bundle_[hash].js',
     path: path.join(__dirname, '../dist'),
     publicPath: '/'
   },

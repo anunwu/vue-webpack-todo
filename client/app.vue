@@ -3,25 +3,28 @@
     <div id="cover"></div>
     <Header />
 <!--    <Todo></Todo>-->
-    <router-link to="/app/123">app</router-link>
+    <router-link to="/app/123">app123</router-link>
+    <router-link to="/app/456">app456</router-link>
+    <router-link :to="{ name: 'app' }">app</router-link>
     <router-link to="/login">login</router-link>
     <transition name="fade">
       <router-view />
     </transition>
     <Footer />
+<!--    <router-view name="a" />-->
   </div>
 </template>
 
 <script>
 import Header from './layout/header.vue'
 import Footer from './layout/footer.jsx'
-import Todo from './views/todo/todo.vue'
+// import Todo from './views/todo/todo.vue'
 
 export default {
   components: {
     Header,
-    Footer,
-    Todo
+    Footer
+    // Todo
   }
   // mounted() {
   //   console.log(this.$route)
